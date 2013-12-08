@@ -55,7 +55,7 @@
 		*	gContacts Changes Release Version for tracking of Errors and Reporting
 		*	Purposes
 		*/
-		var $gContacts_Changes_Release = 11;
+		var $gContacts_Changes_Release = 12;
 		
 		
 	}
