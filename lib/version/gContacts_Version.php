@@ -28,7 +28,7 @@
 	*
 	**/
 	
-	final class gContacts_Version{
+	final class Version{
 		/**
 		* 	Package Name under which development is taking place
 		**/
