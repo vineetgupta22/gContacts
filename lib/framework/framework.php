@@ -11,7 +11,7 @@
 	*
 	*
 	*	@package				gContacts
-	*	@file					gContacts.php
+	*	@file					framework.php
 	*	@copyright				Cee Emm Infotech, 2013-2014
 	*	@author					Vineet Gupta <vineetgupta22@gmail.com>
 	*	@since					1.0.0
@@ -59,5 +59,28 @@
 		}
 	}
 
+	//We need some of the Global variables so that we can use them anywhere
+	define('lib', _root. ds. 'lib'. ds);
+
+	//location of template i.e. view of the request
+	define('template', _root. ds. 'template'. ds);
+
+	//location of template i.e. view of the request
+	define('autoloader', lib. 'autoloader'. ds);
+
+	//including the global functions of the projects
+	define('functions', _root. 'functions'. ds);
+
+
+	/**
+	*	We now require the auto-loading of the library files. As it
+	*	would help not to write require or include phrase again and
+	*	again. Again it would be constructed as dynamically, so it
+	*	project or developer has its own class then it can be used
+	*	and this Project Autoloader not get activated.
+	**/
+	if ( !defined('gautoloader') ) {
+		require_once autoloader . 'autoloader.php';
+	}
 
 ?>
