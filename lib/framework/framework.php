@@ -60,16 +60,16 @@
 	}
 
 	//We need some of the Global variables so that we can use them anywhere
-	define('lib', _root. ds. 'lib'. ds);
+	define('gContacts_lib', gContacts_root. ds. 'lib'. ds);
 
 	//location of template i.e. view of the request
-	define('template', _root. ds. 'template'. ds);
+	define('gContacts_template', gContacts_root. ds. 'template'. ds);
 
 	//location of template i.e. view of the request
-	define('autoloader', lib. 'autoloader'. ds);
+	define('gContacts_autoloader', gContacts_lib. 'autoloader'. ds);
 
 	//including the global functions of the projects
-	define('functions', _root. 'functions'. ds);
+	define('gContacts_functions', gContacts_root. 'functions'. ds);
 
 
 	/**
@@ -80,7 +80,7 @@
 	*	and this Project Autoloader not get activated.
 	**/
 	if ( !defined('gautoloader') ) {
-		require_once autoloader . 'autoloader.php';
+		require_once gContacts_autoloader . 'autoloader.php';
 	}
 
 ?>

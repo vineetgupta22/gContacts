@@ -32,7 +32,7 @@
 	*	and library to the Project Dynamically. The location of file is 
 	*	important as to Dynamically include Library and Functions files
 	**/
-	define('_root', realpath(dirname(__FILE__)));
+	define('gContacts_root', realpath(dirname(__FILE__)));
 
 	// }}}
 
@@ -41,5 +41,5 @@
 	*	Including the Framework file to the Project, as it will further load
 	*	more important Library files and create a minimum working environment.
 	**/
-	require_once ( _root . "/lib/framework/framework.php" );
+	require_once ( gContacts_root . "/lib/framework/framework.php" );
 ?>

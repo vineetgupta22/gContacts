@@ -33,7 +33,7 @@
 	*	and library to the Project Dynamically. The location of file is 
 	*	important as to Dynamically include Library and Functions files
 	**/
-	define('_root', realpath(dirname(dirname(__FILE__))));
+	define('gContacts_root', realpath(dirname(dirname(__FILE__))));
 
 	/**
 	*	if you are defining it then constant that we have described time zone here.
@@ -41,6 +41,27 @@
 	*	settings used in Demo Project.
 	**/
 	define('time_zone', true);
+	
+	/**
+	*	If you have your own autoloader class in the project then it is important
+	*	to set constant gautoloader to true. It will not load the gautoloader
+	*	instead we will be using your autoloader class
+	**/
+	define('gautoloader', true);
+	
+	
+	/**
+	*	It is genrally seen that the developers provide there own prefix names
+	*	to the files and classes to autoload the classes through autoloader. Thus, 
+	*	if you are using any prefix then request you to move the location of file
+	*	and change the name of file accordingly. You have to provide here the 
+	*	classes name prefix so that the classes would be loaded perfectly. 
+	*
+	*	In case you don't use any prefix, just describe it as empty. I am setting
+	*	default name as 'Law' as it is the part of our internal program.
+	**/
+	define('class_prefix', 'law');
+	
 
 	// }}}
 
@@ -53,5 +74,5 @@
 	*	Including the Framework file to the Project, as it will further load
 	*	more important Library files and create a minimum working environment.
 	**/
-	require_once ( _root . "/lib/framework/framework.php" );
+	require_once ( gContacts_root . "/lib/framework/framework.php" );
 ?>
