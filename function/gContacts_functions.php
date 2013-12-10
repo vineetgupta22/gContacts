@@ -8,7 +8,7 @@
 	*	syntax.
 	*
 	*	@package				gContacts
-	*	@file					index.php
+	*	@file					gContacts_functions.php
 	*	@copyright				Cee Emm Infotech, 2013-2014
 	*	@author					Vineet Gupta <vineetgupta22@gmail.com>
 	*	@since					1.0.0
