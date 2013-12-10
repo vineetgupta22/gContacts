@@ -1,0 +1,5 @@
+html{background:#f9f9f9;border:0px;margin:0px;padding:0px;}
+body{background:#fff;color:#333;font-family:sans-serif;margin:2em auto;width:70%;margin-left:12%;padding:1% 2%;-moz-border-radius:11px;-khtml-border-radius:11px;-webkit-border-radius:11px;border-radius:11px;border:1px solid #dfdfdf;}
+#error-page{margin-top:50px;float:left;text-align:center;}
+#logo{margin:6px 0 14px 0;border-bottom:none;text-align:center;}
+h1{border-bottom:1px solid #dadada;clear:both;color:#666;font:24px Georgia,"Times New Roman",Times,serif;margin:5px 0 0 -4px;padding:0;padding-bottom:7px;}

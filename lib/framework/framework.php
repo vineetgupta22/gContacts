@@ -59,21 +59,29 @@
 		}
 	}
 
-	//We need some of the Global variables so that we can use them anywhere
-	define('gContacts_lib', gContacts_root. ds. 'lib'. ds);
+	if (!defined('gContacts_lib') ) {
+		//We need some of the Global variables so that we can use them anywhere
+		define('gContacts_lib', gContacts_root. ds. 'lib'. ds);
+	}
 
-	//location of template i.e. view of the request
-	define('gContacts_template', gContacts_root. ds. 'template'. ds);
+	if (!defined('gContacts_template') ) {
+		//location of template i.e. view of the request
+		define('gContacts_template', gContacts_root. ds. 'template'. ds);
+	}
+	
+	if (!defined('gautoloader') ) {
+		//location of autoloader class
+		define('gContacts_autoloader', gContacts_lib. 'autoloader'. ds);
+	}
 
-	//location of template i.e. view of the request
-	define('gContacts_autoloader', gContacts_lib. 'autoloader'. ds);
-
-	//including the global functions of the projects
-	define('gContacts_functions', gContacts_root. ds . 'function'. ds);
+	if (!defined('gContacts_functions') ) {
+		//including the global functions of the projects
+		define('gContacts_functions', gContacts_root. ds . 'function'. ds);
+	}
 
 
 	//Including Functions for the Project
-	require_once gContacts_functions . "functions.php";
+	require_once gContacts_functions . "gContacts_functions.php";
 
 
 	/**
@@ -86,5 +94,7 @@
 	if ( !defined('gautoloader') ) {
 		require_once gContacts_autoloader . 'autoloader.php';
 	}
+	
+	error_die(1, __FILE__);
 
 ?>

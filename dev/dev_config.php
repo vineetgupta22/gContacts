@@ -71,6 +71,47 @@
 	*	developers error reporting tool.
 	**/
 	define('error_report', true);
+	
+	/**
+	*	If the developer is providing own location of root directory then he must define
+	*	location of other directories are required by the framework for wokring
+	**/
+	if ( defined('gContacts_root') ) {
+		
+		//If we are using the Project library location of library then
+		//it would be
+		if ( !defined('gContacts_lib') ) {
+			//Kindly change this to your own location of library 
+			define('gContacts_lib', _lib);
+		}
+		
+		//location of autoloader class in case gautoloader is not defined.
+		if ( !defined('gautoloader') ) {
+			//location of autoloader class
+			define('gContacts_autoloader', gContacts_lib. 'autoloader'. ds);
+		}
+		
+		//location of global functions
+		if ( ! defined('gContacts_functions') ) {
+			//including the global functions of the projects
+			define('gContacts_functions', _lib);
+		}
+		
+		//Error reporting or other things
+		if ( !defined('gContacts_template') ) {
+			//location of template i.e. view of the request
+			define('gContacts_template', _template);
+		}
+	}
+	
+	
+	/**
+	*	If developer want to use its own error reporting tools then
+	*	describe the constant own_error_die as true to skip the function
+	*	in functions directory
+	**/
+	define('own_error_die', true);
+	
 
 	// }}}
 
