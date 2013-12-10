@@ -51,7 +51,7 @@
 	
 	
 	/**
-	*	It is genrally seen that the developers provide there own prefix names
+	*	It is generally seen that the developers provide there own prefix names
 	*	to the files and classes to autoload the classes through autoloader. Thus, 
 	*	if you are using any prefix then request you to move the location of file
 	*	and change the name of file accordingly. You have to provide here the 
@@ -63,7 +63,50 @@
 	define('class_prefix', 'law');
 	
 
+	/**
+	*	It is also seen that some times developers have own kind of Error Reporting
+	*	function or tools. To deprecate the gContacts error reporting function we are
+	*	using the constant error_report. It is true it will not implement gContacts
+	*	error reporting function but we have create the dummy function here to call
+	*	developers error reporting tool.
+	**/
+	define('error_report', true);
+
 	// }}}
+
+	//Function for error reporting tool.
+	function error_die($error_number, $file_location){
+		//Here I am provided the error details about its message and number used
+		//You can change it according to your needs
+
+		//This is our reporting system
+		$error_details = array(
+			1 => "File doesn't Available at the location Provided",
+			2 => "File Exists at the location but Class is not available in File",
+		);
+
+
+		//Change the error number to report in developer correctly
+		$new_error_number = array(1 => 5, 2 => 20);
+
+		$new_error_message = array(
+			5 => 'File is not Available at Current Location',
+			20 => 'Kindly Provide the correct location of Class or Create a New Class',
+			25 => 'Kindly Provide the Correct Number of Error Reporting',
+		);
+
+		//Provided your reporting system and call according to it.
+		if ( isset ( $new_error_number[$error_number]) ){
+			//Calling your error function
+			error_class(
+						$new_error_number[$error_number], 
+						$file_location,
+						$new_error_message[$new_error_number[$error_number]]
+			);
+		}else{
+			error_class(25, __FILE__, $new_error_message[25]);
+		}
+	}
 
 
 	//Defining the default time zone as dynamically used by Project

@@ -69,7 +69,11 @@
 	define('gContacts_autoloader', gContacts_lib. 'autoloader'. ds);
 
 	//including the global functions of the projects
-	define('gContacts_functions', gContacts_root. 'functions'. ds);
+	define('gContacts_functions', gContacts_root. ds . 'function'. ds);
+
+
+	//Including Functions for the Project
+	require_once gContacts_functions . "functions.php";
 
 
 	/**

@@ -91,7 +91,7 @@
 					return true;
 				}else{
 					//As file Exits but Class doesn't found 
-					error_class(2, self::$_imported[$class_name]);
+					error_die(2, self::$_imported[$class_name]);
 				}
 			}
 		}
@@ -116,7 +116,7 @@
 				return true;
 			}else{
 				//As file doesn't Exits we Have to do Error Shutdown
-				error_class(1, $folder_name . $file_name);
+				error_die(1, $folder_name . $file_name);
 			}
 		}
 
