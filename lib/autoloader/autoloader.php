@@ -135,9 +135,9 @@
 
 			$folders = explode('_', $class_name);
 			if ( count($folders) == 1 ){
-				return lib . $folders[0] . ds;
+				return gContacts_lib . $folders[0] . ds;
 			}else{
-				$folder_name=lib;
+				$folder_name=gContacts_lib;
 				foreach($folders as $folder){
 					$folder_name.=$folder . ds;
 				}

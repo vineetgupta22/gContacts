@@ -94,7 +94,5 @@
 	if ( !defined('gautoloader') ) {
 		require_once gContacts_autoloader . 'autoloader.php';
 	}
-	
-	error_die(1, __FILE__);
 
 ?>
