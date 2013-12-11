@@ -77,7 +77,9 @@
 				return false;
 			}else{
 				//Now Sending to set the file location the file
-				self::import($class_name);
+				if(! isset (self::$_imported[$class_name])){
+					self::import($class_name);
+				}
 
 				//Now Check the File Name is set
 				if(self::$_imported[$class_name]){

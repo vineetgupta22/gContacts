@@ -85,6 +85,59 @@
 
 
 	/**
+	*	We have to Check as going to use our gContacts Error Handler
+	*	or Developer's
+	**/
+	if ( defined('gContacts_error_handler') ){
+		/**
+		*	Basically there are four types of errors in PHP
+		*
+		*	1. Parser Error
+		*
+		*		It occurs when there is the syntax error/mistake in the source
+		*	code A Parser Error stop the execution of the code. The reasons for
+		*	parser error are:
+		*
+		*			- unclosed quotes
+		*			- Missing or Extra parentheses
+		*			- unclosed brackets
+		*			- Missing semicolon
+		*
+		*	2. Fatal Error
+		*
+		*		Fatal Error are those errors which PHP Understand but some thing
+		*	which can't be done. Fatal Error stops the execution of the Code. The
+		*	simple example is to function references of function which is not 
+		*	available in PHP or User Defined.
+		*
+		*	3. Warning Error
+		*
+		*		Warning Error doesn't stop the execution of the script. They just
+		*	show the errors on the Page that something is wrong. Simple Example is
+		*	include a page which doesn't exists.
+		*
+		*	4.	Notice Error
+		*
+		*		Notice Errors are same as Warning Error to notify that there 
+		*	are some errors in the script that required to be corrected.
+		**/
+
+		/**
+		*	PHP has three main function for Errors Handling by user itself:
+		*	1. set_error_handler 			[for Handling PHP Error]
+		*	2. set_exception_handler		[for Handling PHP Exception Errors]
+		*	3. register_shutdown_function	[For Handling PHP Fatal or execution stop Erros]
+		*
+		*	Now, we are going to re-direct 3 types of error to Function and do things
+		*	in Functions. We may choose our way of reporting errors
+		*
+		*	If you want to use the Error Handle make sure that Function must exists.
+		* 	Thus, we have added the functions first then error handling and autoloader.
+		**/
+	}
+
+
+	/**
 	*	We now require the auto-loading of the library files. As it
 	*	would help not to write require or include phrase again and
 	*	again. Again it would be constructed as dynamically, so it

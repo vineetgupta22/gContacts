@@ -112,6 +112,15 @@
 	**/
 	define('own_error_die', true);
 	
+	
+	/**
+	*	In Various Project Developers have there own Error Handling
+	*	Classes or Functions thus we block the usage of gContacts
+	*	Error Handler. Define as false if developer doesn't have its
+	*	its own error handling
+	**/
+	define('own_error_handing', true);
+	
 
 	// }}}
 
@@ -152,7 +161,9 @@
 
 	//Defining the default time zone as dynamically used by Project
 	$default_gContacts_timezone = "Asia/Calcutta";
-
+	
+	
+	
 
 	/**
 	*	Including the Framework file to the Project, as it will further load

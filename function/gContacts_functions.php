@@ -63,5 +63,9 @@
 		}
 	}
 	
+	//We have to implement our own error Handler
+	if ( ! defined('own_error_handing') ){
+		define('gContacts_error_handler', true);
+	}
 
 ?>
