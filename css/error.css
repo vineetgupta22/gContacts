@@ -1,5 +1,14 @@
 html{background:#f9f9f9;border:0px;margin:0px;padding:0px;}
+ol, li{margin:0; padding:0; border:0; outline:0; font-size:100%; display:block; vertical-align:baseline; background:transparent;}
 body{background:#fff;color:#333;font-family:sans-serif;margin:2em auto;width:70%;margin-left:12%;padding:1% 2%;-moz-border-radius:11px;-khtml-border-radius:11px;-webkit-border-radius:11px;border-radius:11px;border:1px solid #dfdfdf;}
 #error-page{margin-top:50px;float:left;text-align:center;}
 #logo{margin:6px 0 14px 0;border-bottom:none;text-align:center;}
 h1{border-bottom:1px solid #dadada;clear:both;color:#666;font:24px Georgia,"Times New Roman",Times,serif;margin:5px 0 0 -4px;padding:0;padding-bottom:7px;}
+.error{width:100%;text-align:center;}
+.error ol{margin:auto;width:100%;text-align:justify;}
+li,dd,dt,.set{padding-bottom:2px;font-size:18px;font-family:verdana;margin:10px;list-style-type: none;margin-top:25px;margin-bottom:25px;text-align:justify;}
+.step{margin:20px 0 15px;text-align:center;padding:0;}
+.button{font-family:sans-serif;text-decoration:none;font-size:14px!important;line-height:16px;padding:6px 12px;cursor:pointer;border:1px solid #bbb;color:#464646;-moz-border-radius:15px;-khtml-border-radius:15px;-webkit-border-radius:15px;border-radius:15px;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;-khtml-box-sizing:content-box;box-sizing:content-box;background:#f2f2f2 url(/images/white-grad.png) repeat-x scroll left top;}
+.button:active{background:#eee url(/images/white-grad-active.png) repeat-x scroll left top;}
+.button:hover{color:#000;border-color:#666;}
+#message{border:1px solid black;}
