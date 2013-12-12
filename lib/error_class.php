@@ -44,7 +44,7 @@
 		<link rel="stylesheet" href="css/error.css" type="text/css" />
 	</head>
 	<body id="error-page">
-		<h1 id="logo"><img alt="WordPress" src="images/logo.png" /></h1>
+		<h1 id="logo"><img alt="gContacts" src="images/logo.png" /></h1>
 		<?
 			if ( ! isset($_GET['m'] ) ) {
 		?>

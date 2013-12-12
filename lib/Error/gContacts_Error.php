@@ -58,6 +58,13 @@
 		*	@since		1.0.0
 		**/
 		var $function_from;
+		
+		
+		/**
+		*	We need the Error details stored in contes
+		*	@since		1.0.0
+		**/
+		var $context;
 
 		/**
 		*	PHP inbuilt error Number and Error type already provided. Thus, we
@@ -93,7 +100,7 @@
 		var $_law_warning_errors = array();
 
 
-		public function __construct(Version $v=null, $eno=null, $message=null, $file=null, $line=null, $from=null){
+		public function __construct(Version $v=null, $eno=null, $message=null, $file=null, $line=null, $contex=null, $from=null){
 
 			//Setting the version information
 			$this->version=$v;
@@ -109,6 +116,9 @@
 
 			//Error File
 			$this->error_file=$file;
+			
+			//Error Context
+			$this->context=$context;
 
 			//Function from
 			$this->function_from=$from;

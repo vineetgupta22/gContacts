@@ -91,6 +91,71 @@
 		}
 	}
 	
+	/**
+	*	Function to do Beautify of JSON for CLI and GUI
+	**/
+	function indent($json) {
+		//Returning Strings
+		$result      = '';
+
+		//Position
+		$pos         = 0;
+
+		//Lenght of original json encoded string
+		$strLen      = strlen($json);
+
+		//Providing indent to Beautify
+		$indentStr   = '&nbsp;&nbsp;  ';
+
+		//New Line to Beautify
+		$newLine     = "<br/>\n";
+
+		//Need to store any Previous Characters
+		$prevChar    = '';
+
+		//Out of JSON Quotes
+		$outOfQuotes = true;
+
+		//Running character by character
+		for ($i=0; $i<=$strLen; $i++) {
+			// Grab the next character in the string.
+			$char = substr($json, $i, 1);
+
+			// Are we inside a quoted string?
+			if ($char == '"' && $prevChar != '\\') {
+				$outOfQuotes = !$outOfQuotes;
+
+				// If this character is the end of an element,
+				// output a new line and indent the next line.
+			} else if(($char == '}' || $char == ']') && $outOfQuotes) {
+				$result .= $newLine;
+				$pos --;
+
+				for ($j=0; $j<$pos; $j++) {
+					$result .= $indentStr;
+				}
+			}
+
+			// Add the character to the result string.
+			$result .= $char;
+
+			// If the last character was the beginning of an element,
+			// output a new line and indent the next line.
+			if (($char == ',' || $char == '{' || $char == '[') && $outOfQuotes) {
+				$result .= $newLine;
+				if ($char == '{' || $char == '[') {
+					$pos ++;
+				}
+
+				for ($j = 0; $j < $pos; $j++) {
+					$result .= $indentStr;
+				}
+			}
+			$prevChar = $char;
+		}
+		return $result;
+	}
+
 	//We have to implement our own error Handler
 	if ( ! defined('own_error_handing') ){
 		/**
@@ -147,9 +212,9 @@
 		function gContacts_fatal_error(){
 			global $version;
 			$version = check_version($version);
-			$error_last = error_get_last();
-			if ( $error_last['type'] > 0 ) {
-				new Error($version, 16, $error_last["message"], $error_last['file'], $error_last['line'], 'gContacts_fatal_error');
+			$error = error_get_last();
+			if ( $error['type'] > 0 ) {
+				new Error($version, 16, $error["message"], $error['file'], $error['line'], null, 'gContacts_fatal_error');
 				return true;
 			}
 		}
