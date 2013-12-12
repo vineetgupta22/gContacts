@@ -21,6 +21,32 @@
 	**/
 	defined('gContacts') or die('Direct Access to the File is Prohibited');
 
+	/**
+	*	gContacts_import
+	*
+	*	Function is used to import the library files in the Project
+	*	this is the dynamic function for doing things
+	**/
+	if ( !defined('own_import_function') ) {
+		function gContacts_import($class_name){
+			gContacts_autoloader::import($class_name);
+		}
+	}
+	
+	/**
+	*	go
+	*
+	*	Function go is used to print array as each time we use print_r
+	*	prints but nothing is understandable and thus to do understanding
+	*	printing of print_r using go function
+	**/
+	function go($abc = array()){
+		echo '<pre>';
+		print_r($abc);
+		echo '</pre>';
+	}
+
+
 	//If we are not using developer script then use our own error reporting
 	if ( !defined('own_error_die') ) {
 		//Own Error reporting tool for own error numbers
@@ -47,7 +73,8 @@
 						//else display error message
 						require_once gContacts_lib . 'error_class.php';
 					}else{
-						die('Some Files are missing. Kindly Download the Project Again.');
+						//Template printing class is missing and thus through an die error
+						die('Some Files are missing. Kindly Download the Project Again.<br>'.$file_location);
 					}
 				}
 			}else{
@@ -57,7 +84,8 @@
 					//else display error message
 					require_once gContacts_lib . 'error_class.php';
 				}else{
-					die('Some Files are missing. Kindly Download the Project Again.');
+					//Template printing class is missing and thus through an die error
+					die('Some Files are missing. Kindly Download the Project Again.<br>' . $file_location);
 				}
 			}
 		}
@@ -65,7 +93,65 @@
 	
 	//We have to implement our own error Handler
 	if ( ! defined('own_error_handing') ){
+		/**
+		*	Functions are loaded before auto loader or any thing other loaded.
+		*	For Error Reporting we need to determine whether Developer version
+		*	is being used or Demo Version is used.
+		**/
 		define('gContacts_error_handler', true);
-	}
 
+
+		/**
+		*	As We need the Version information to print the details thus
+		*	small function to get the version information
+		**/
+		function check_version($version = null){
+			if(!is_object($version)){
+				if (!class_exists('Version')) {
+					gContacts_import('Version');
+					$a = new Version();
+					return $a->getversion();
+				}
+			}else{
+				return $version->getversion();
+			}
+		}
+
+
+		/**
+		*	gContacts_error_handler
+		*
+		*	gContacts Error Handler function
+		**/
+		function gContacts_error_handler($number=null, $message=null, $file=null, $line=null, $context=null){
+			global $version;
+			$version = check_version($version);
+		}
+
+
+		/**
+		*	gContacts_error_exception_handler
+		*
+		*	gContacts Error Exception Handler function
+		**/
+		function gContacts_error_exception_handler($number=null, $message=null, $file=null, $line=null, $context=null){
+			global $version;
+			$version = check_version($version);
+		}
+
+		/**
+		*	gContacts_fatal_error
+		*
+		*	gContacts Fatal Error Handling function
+		**/
+		function gContacts_fatal_error(){
+			global $version;
+			$version = check_version($version);
+			$error_last = error_get_last();
+			if ( $error_last['type'] > 0 ) {
+				new Error($version, 16, $error_last["message"], $error_last['file'], $error_last['line'], 'gContacts_fatal_error');
+				return true;
+			}
+		}
+	}
 ?>

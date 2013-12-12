@@ -39,6 +39,11 @@
 	**/
 	error_reporting(-1);
 
+	/**
+	*	Don't Display System Generated Errors
+	**/
+	ini_set('display_errors', '0');
+
 
 	/**
 	*	Defining the time-zone on time to make sure working according to 
@@ -134,6 +139,14 @@
 		*	If you want to use the Error Handle make sure that Function must exists.
 		* 	Thus, we have added the functions first then error handling and autoloader.
 		**/
+		//Setting for the PHP Error Handler
+		set_error_handler('gContacts_error_handler');
+
+		//Setting for the PHP Exceptions Error Handler
+		set_exception_handler('gContacts_error_exception_handler');
+
+		//Setting for the PHP Fatal Error
+		register_shutdown_function('gContacts_fatal_error');
 	}
 
 
@@ -147,5 +160,8 @@
 	if ( !defined('gautoloader') ) {
 		require_once gContacts_autoloader . 'autoloader.php';
 	}
+
+	gContacts_import('Version');
+	$version=new Version();
 
 ?>
