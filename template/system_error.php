@@ -70,7 +70,7 @@
 		<?
 			if ( isset ( $_GET['m'] ) ) {
 				//If the Server Address is not equal to localhost then send error through email
-				if ( $_SERVER['SERVER_ADDR'] == '127.0.0.1' and ( $_GET['m'] != 1) ){
+				if ( $_SERVER['SERVER_ADDR'] != '127.0.0.1' and ( $_GET['m'] == 1) ){
 					$emailmessage.="<b>Request Details</b>=".json_encode($_REQUEST);
 					if ( isset ( $this->context) ) {
 						$emailmessage.=json_encode($this->context);
