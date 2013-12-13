@@ -60,7 +60,7 @@
 	*	In case you don't use any prefix, just describe it as empty. I am setting
 	*	default name as 'Law' as it is the part of our internal program.
 	**/
-	define('class_prefix', 'law');
+	define('class_prefix', 'law.');
 	
 
 	/**
@@ -173,7 +173,7 @@
 	/**
 	*	Create your function form importing class
 	**/
-	if ( define('own_import_function')){
+	if ( defined('own_import_function')){
 		function gcontacts_import($class_name){
 			//Your own Function for importing class
 			law_import(class_prefix.$class_name);
