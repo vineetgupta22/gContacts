@@ -73,7 +73,7 @@
 				if ( $_SERVER['SERVER_ADDR'] != '127.0.0.1' and ( $_GET['m'] == 1) ){
 					$emailmessage.="<b>Request Details</b>=".json_encode($_REQUEST);
 					if ( isset ( $this->context) ) {
-						$emailmessage.=json_encode($this->context);
+						$emailmessage.="<b><br><br>System Info</b>= <br/>\n".stripslashes (indent(json_encode($this->context)));
 					}
 					$emailmessage.="<b><br><br>Error Number</b>=".$this->error_no;
 					$emailmessage.="<b><br><br>Message </b>= ".$this->message;
@@ -85,6 +85,7 @@
 					<div class='error'>
 						<ol>
 							<li>We have gathered the below mentioned Information to track the bug.</li>
+							<li>No Personal information gathered.</li>
 							<li>Click Send Email to Notify us</li>
 							<li style='text-align:center;font-weight:bold'>Email Preview</li>
 						</ol>

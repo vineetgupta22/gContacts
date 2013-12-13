@@ -100,7 +100,7 @@
 		var $_law_warning_errors = array();
 
 
-		public function __construct(Version $v=null, $eno=null, $message=null, $file=null, $line=null, $contex=null, $from=null){
+		public function __construct(Version $v=null, $eno=null, $message=null, $file=null, $line=null, $context=null, $from=null){
 
 			//Setting the version information
 			$this->version=$v;
@@ -142,7 +142,7 @@
 		 *	@var	integer		Error Number
 		 *	return 	boolean		if PHP error described return true else false
 		**/
-		public function check_system_error($error_number){
+		public function check_system_error(){
 			//Assuming the error is not PHP inbuilt
 			$found=false;
 			if($this->error_no > 0){

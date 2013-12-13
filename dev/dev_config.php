@@ -161,8 +161,32 @@
 
 	//Defining the default time zone as dynamically used by Project
 	$default_gContacts_timezone = "Asia/Calcutta";
+
+	/**
+	*	We are using simple gContacts_import to load library 
+	*	dynamically. You have the option to use library import
+	*	function but remember autoloader of library must be enabled
+	*	for using this functions
+	**/
+	define('own_import_function', true);
 	
+	/**
+	*	Create your function form importing class
+	**/
+	if ( define('own_import_function')){
+		function gcontacts_import($class_name){
+			//Your own Function for importing class
+			law_import(class_prefix.$class_name);
+		}
 	
+		//gContacts Provided its own Version information and to override that
+		class Version extends Law_Version{
+			//Returning Version Information from  your class
+			function getversion(){
+				return parent::copyright();
+			}
+		}
+	}
 	
 
 	/**

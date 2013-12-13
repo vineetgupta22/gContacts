@@ -181,6 +181,33 @@
 				return $version->getversion();
 			}
 		}
+		
+		
+		function trace_error ( $debug = array () ){
+			$err = array();
+			if( is_array ( $debug )){
+				foreach($debug as $k => $v){
+					if($k == 0){
+						if( is_array ( $v )){
+							foreach($v as $k1 => $v1){
+								if($k1 === 'args'){
+									foreach($v1 as $k2 => $v2){
+										if ( ! is_array ($v2) ){
+											$err[$k][$k2]=$v2;
+										}
+									}
+								}
+							}
+						}
+					}
+					if($k>0){
+						$err[$k]=$v;
+					}
+				}
+			}
+			return $err;
+		}
+		
 
 
 		/**
@@ -191,6 +218,16 @@
 		function gContacts_error_handler($number=null, $message=null, $file=null, $line=null, $context=null){
 			global $version;
 			$version = check_version($version);
+			$error = trace_error(debug_backtrace());
+			if(!$file){
+				$debug = debug_backtrace() ;
+				if($debug){
+				}else{
+					die('Something Fishy happened');
+				}
+			}else{
+				new Error($version, $number, $message, $file, $line, $context, 'gContacts_error_handler');
+			}
 		}
 
 
@@ -202,6 +239,18 @@
 		function gContacts_error_exception_handler($number=null, $message=null, $file=null, $line=null, $context=null){
 			global $version;
 			$version = check_version($version);
+			$error = trace_error(debug_backtrace());
+			if(!$file){
+				$debug = debug_backtrace() ;
+				if($debug){
+					$debug = debug_backtrace() ;
+					new Error($version, $number, $message, $debug[0]['file'], $debug[0]['line'], $debug[0]['trace'], 'gContacts_error_exception_handler');
+				}else{
+					die('Something Fishy happened');
+				}
+			}else{
+				new Error($version, $number, $message, $file, $line, $context, 'gContacts_error_exception_handler');
+			}
 		}
 
 		/**
