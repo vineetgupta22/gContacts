@@ -16,5 +16,7 @@
 
 	
 	require_once 'gContacts.php';
+	
+	require_once gContacts_template . 'template.php';
 
 ?>

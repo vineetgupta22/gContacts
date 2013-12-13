@@ -55,7 +55,7 @@
 		*	gContacts Changes Release Version for tracking of Errors and Reporting
 		*	Purposes
 		*/
-		var $gContacts_Changes_Release = 29;
+		var $gContacts_Changes_Release = 30;
 		
 		public static function getversion(){
 			return new Version();

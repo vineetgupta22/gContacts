@@ -174,11 +174,10 @@
 			if(!is_object($version)){
 				if (!class_exists('Version')) {
 					gContacts_import('Version');
-					$a = new Version();
-					return $a->getversion();
+					return new Version();
 				}
 			}else{
-				return $version->getversion();
+				return new Version();
 			}
 		}
 		

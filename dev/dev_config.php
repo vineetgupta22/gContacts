@@ -183,7 +183,7 @@
 		class Version extends Law_Version{
 			//Returning Version Information from  your class
 			function getversion(){
-				return parent::copyright();
+				return new Law_Version();
 			}
 		}
 	}
