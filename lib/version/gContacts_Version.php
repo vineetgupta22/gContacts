@@ -28,7 +28,7 @@
 	*
 	**/
 	
-	final class Version{
+	class Version{
 		/**
 		* 	Package Name under which development is taking place
 		**/
@@ -55,10 +55,20 @@
 		*	gContacts Changes Release Version for tracking of Errors and Reporting
 		*	Purposes
 		*/
-		var $gContacts_Changes_Release = 28;
+		var $gContacts_Changes_Release = 29;
 		
 		public static function getversion(){
 			return new Version();
+		}
+		
+		public function copyright(){
+			$copyright='';
+			$copyright=$this->package_name;
+			$copyright.=" [" . $this->package_short_name . "]";
+			$copyright.=" - Release No." . $this->gContacts_Major_Release ;
+			$copyright.="." . $this->gContacts_Minor_Release;
+			$copyright.="." . $this->gContacts_Changes_Release;
+			return $copyright;
 		}
 		
 	}
