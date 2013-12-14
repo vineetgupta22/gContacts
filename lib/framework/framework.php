@@ -163,7 +163,5 @@
 
 	gContacts_import('Version');
 	$version=new Version();
-	
-	check_folder();
 
 ?>

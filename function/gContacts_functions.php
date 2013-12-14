@@ -273,7 +273,6 @@
 	
 	function check_folder(){
 		$dir = gContacts_root . ds . 'input';
-		//echo $dir . '<br>';
 		if ( !file_exists($dir) ) {
 			require_once gContacts_template . 'permission.php';
 		}else{

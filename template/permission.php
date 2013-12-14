@@ -255,7 +255,7 @@
 				ftp_close($conn_id);
 				
 				if ( check_folder() ) {
-					header("Location:/");
+					header("Location:/dbconfig.php");
 				}else{
 					echo 'ERROR is here';
 				}
@@ -288,7 +288,8 @@
 		<h1 id="logo"><img alt="gContacts" src="images/logo.png" /></h1>
 		<div class='error'>
 			<ol>
-				<li>Kindly Create "input" folder in root directory with write permission "0666".</li>
+				<li>We Need Some Write Access to the Directories for proper working</li>
+				<li>Kindly Create "input" folder in root directory of Project with write permission "0666".</li>
 				<li>Kindly Provide the Write Permission - "0666" to Files:</li>
 				<li>If you don't know how to do it. Kindly Provide the FTP information below</li>
 			</ol>
