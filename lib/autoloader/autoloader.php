@@ -137,13 +137,13 @@
 
 			$folders = explode('_', $class_name);
 			if ( count($folders) == 1 ){
-				return gContacts_lib . $folders[0] . ds;
+				return strtolower(gContacts_lib . $folders[0] . ds);
 			}else{
 				$folder_name=gContacts_lib;
 				foreach($folders as $folder){
 					$folder_name.=$folder . ds;
 				}
-				return $folder_name;
+				return strtolower($folder_name);
 			}
 		}
 

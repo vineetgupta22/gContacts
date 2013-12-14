@@ -55,6 +55,7 @@
 			$error_details = array(
 				1 => "File doesn't Available at the location Provided",
 				2 => "File Exists at the location but Class is not available in File",
+				5 => "Change Permission to Write of Input Folder",
 				0 => "Kindly Add the Error Number",
 			);
 			
@@ -63,6 +64,7 @@
 				0 => "Error Number not Found",
 				1 => "File Not Found",
 				2 => "Class Not Found",
+				5 => "Change Permission",
 			);
 			
 			if ( isset ( $error_details[$error_number]) ) {
@@ -267,4 +269,20 @@
 			}
 		}
 	}
+	
+	
+	function check_folder(){
+		$dir = gContacts_root . ds . 'input';
+		//echo $dir . '<br>';
+		if ( !file_exists($dir) ) {
+			require_once gContacts_template . 'permission.php';
+		}else{
+			if (is_writable($dir)) {
+				return true;
+			}else{
+				error_die(5, gContacts_root . ds . 'input');
+			}
+		}
+	}
+	
 ?>

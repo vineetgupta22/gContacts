@@ -40,7 +40,7 @@
 	
 	<p style='text-align:justify;text-indent:50px;'>In all likelihood, these items were supplied to you by your Web Host. If you do not have this information, then you will need to contact them before you can continue. If you&#8217;re all ready&hellip;</p>
 	
-	<p class="step"><a href="setup-config.php?step=1" class="button">Let&#8217;s go!</a></p>
+	<p class="step"><a href="dbconfig.php" class="button">Let&#8217;s go!</a></p>
 		</div>
 	</div>
 </html5:section>
