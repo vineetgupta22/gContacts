@@ -45,6 +45,28 @@
 		print_r($abc);
 		echo '</pre>';
 	}
+	
+	
+	function check_folder(){
+		$dir = gContacts_root . ds . 'input';
+		if ( !file_exists($dir) ) {
+			if ( @mkdir($dir, 0766) ) {
+				if (is_writable($dir)) {
+					return true;
+				}else{
+					die('Some Error Here');
+				}
+			}else{
+				require_once gContacts_template . 'permission.php';
+			}
+		}else{
+			if (is_writable($dir)) {
+				return true;
+			}else{
+				error_die(5, gContacts_root . ds . 'input');
+			}
+		}
+	}
 
 
 	//If we are not using developer script then use our own error reporting
@@ -227,7 +249,12 @@
 					die('Something Fishy happened');
 				}
 			}else{
-				new Error($version, $number, $message, $file, $line, $context, 'gContacts_error_handler');
+				if ( $file != "/home/lawmirr/beta/function/gContacts_functions.php" and $line != 53){
+					new Error($version, $number, $message, $file, $line, $context, 'gContacts_error_handler');
+				}else{
+					require_once gContacts_template . 'permission.php';
+					die();
+				}
 			}
 		}
 
@@ -271,17 +298,6 @@
 	}
 	
 	
-	function check_folder(){
-		$dir = gContacts_root . ds . 'input';
-		if ( !file_exists($dir) ) {
-			require_once gContacts_template . 'permission.php';
-		}else{
-			if (is_writable($dir)) {
-				return true;
-			}else{
-				error_die(5, gContacts_root . ds . 'input');
-			}
-		}
-	}
+	
 	
 ?>
