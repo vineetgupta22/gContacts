@@ -188,6 +188,14 @@
 		}
 	}
 	
+	
+	
+	/**
+	*	If you have already started the session then use this constant
+	*	to avoid the session starting in the project
+	**/
+	define('gContact_session', true);
+	
 
 	/**
 	*	Including the Framework file to the Project, as it will further load

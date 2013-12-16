@@ -19,17 +19,6 @@
 	**/
 	defined('gContacts') or die('Direct Access to the File is Prohibited');
 	
-	
-	$page = $_SERVER['REQUEST_URI'];
-	$page = explode('/', $page);
-	
-	if( strlen ( $page[1] ) > 0 ){
-		$page = $page[1];
-	}else{
-		$page = 'home';
-	}
-	
-	
 	//This is XML Version for the IE Browsers as it is used to convert the 
 	//Web Page Html5 to XML Version for IE Brosers	
 	echo '<'.'?xml version="1.0" encoding="utf-8"?'.">\r\n"; 

@@ -23,5 +23,10 @@
 	if ($page == "home"){
 		require_once "home_contents.php";
 	}
+	
+	if ($page == "dbconfig.php"){
+		require_once "dbcontents.php";
+	}
+	
 
 ?>

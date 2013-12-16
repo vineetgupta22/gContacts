@@ -1,12 +1,13 @@
 <?
 
 	/**
-	*	Template - Title
+	*	Database Information
 	*
-	*	This file would be used to display template Title Tags
+	*	This file would be used to display template to get the information
+	*	about database from the user
 	*
 	*	@package				gContacts
-	*	@file					title.php
+	*	@file					dbcontents.php
 	*	@copyright				Cee Emm Infotech, 2013-2014
 	*	@author					Vineet Gupta <vineetgupta22@gmail.com>
 	*	@since					1.0.0
@@ -19,14 +20,7 @@
 	**/
 	defined('gContacts') or die('Direct Access to the File is Prohibited');
 ?>
-<title>
-<?
-	if ($page == "home"){
-		echo "Welcome to gContacts";
-	}
+
+<html5:section id='starting'>
 	
-	if ($page == "dbconfig.php"){
-		echo "Database Configure - gContacts";
-	}
-?>
-</title>
+</html5:section>

@@ -21,13 +21,18 @@
 	defined('gContacts') or die('Direct Access to the File is Prohibited');
 
 	//Clean the screen whatever output has been done just clean it.
-	$data = ob_get_clean();
+	$data = ob_end_clean();
+	
 	
 	//Resetting the Output buffer
 	ob_start();
 	
-	//Session Start for sync session
-	session_start();
+	
+	if ( ! defined('gContact_session') ) {
+	
+		//Session Start for sync session
+		session_start();
+	}
 
 	
 	//We are going to use XHTML5, the specification are not provided any where
@@ -68,18 +73,20 @@
 		?>
 		
 		<?
+			
 			if ( isset ( $_GET['m'] ) ) {
 				//If the Server Address is not equal to localhost then send error through email
-				if ( $_SERVER['SERVER_ADDR'] != '127.0.0.1' and ( $_GET['m'] == 1) ){
+				$emailmessage='';
+				if ( $_SERVER['SERVER_ADDR'] == '127.0.0.1' and ( $_GET['m'] == 1) ){
 					$emailmessage.="<b>Request Details</b>=".json_encode($_REQUEST);
 					if ( isset ( $this->context) ) {
-						$emailmessage.="<b><br><br>System Info</b>= <br/>\n".stripslashes (indent(json_encode($this->context)));
+						$emailmessage.="<b><br><br>System Info</b>= <br/>\n".stripslashes (indent(@json_encode($context)));
 					}
 					$emailmessage.="<b><br><br>Error Number</b>=".$this->error_no;
 					$emailmessage.="<b><br><br>Message </b>= ".$this->message;
 					$emailmessage.="<b><br><br>Location </b>= ".$this->error_file;
 					$emailmessage.="<b><br><br>Line No. </b>= ".$this->error_line;
-					$emailmessage.="<b><br><br>Details. </b>= <br/>\n".stripslashes (indent(json_encode(debug_backtrace())));
+					$emailmessage.="<b><br><br>Details. </b>= <br/>\n".stripslashes (indent(@json_encode(debug_backtrace())));
 					
 				?>
 					<div class='error'>
@@ -139,7 +146,7 @@
 					?>
 					<div class='error'>
 						<ol>
-							<li>Sorry, Localhost run can't view Error Message</li>
+							<li>Sorry, Localhost run can't Send Error Message</li>
 						</ol>
 					</div>
 					<?

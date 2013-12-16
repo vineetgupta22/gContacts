@@ -22,7 +22,7 @@
 	defined('gContacts') or die('Direct Access to the File is Prohibited');
 
 	//Clean the screen whatever output has been done just clean it.
-	$data = ob_get_clean();
+	$data = ob_end_clean();
 	
 	//Resetting the Output buffer
 	ob_start();

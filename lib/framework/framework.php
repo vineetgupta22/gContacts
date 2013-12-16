@@ -25,6 +25,19 @@
 	**/
 	defined('gContacts') or die('Direct Access to the File is Prohibited');
 
+	//Starting the output buffer
+	ob_start();
+	
+	
+	if ( !defined('gContact_session') ) {
+		//Session the session
+		session_start();
+
+		//Session is started here
+		define('gContact_session', true);
+	}
+	
+	
 
 	/**
 	*	Definition of directory separator to be used 
@@ -42,7 +55,7 @@
 	/**
 	*	Don't Display System Generated Errors
 	**/
-	ini_set('display_errors', '0');
+	ini_set('display_errors', '1');
 
 
 	/**
@@ -163,5 +176,16 @@
 
 	gContacts_import('Version');
 	$version=new Version();
+	
+	
+	//Required for printing of page
+	$page = $_SERVER['SCRIPT_NAME'];
+	$page = explode('/', $page);
+	
+	if( strlen ( $page[1] ) > 0 ){
+		$page = $page[1];
+	}else{
+		$page = 'home';
+	}
 
 ?>
