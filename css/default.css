@@ -1,5 +1,5 @@
 html, body, h1, div, html5\:header, html5\:footer, html5\:section{padding:0px;margin:0px; border-spacing:0px;display:block}
-html{background:#f9f9f9}
+html{background:#f9f9f9;font-family:sans-serif}
 html5\:header {float:left;height:85px;min-height:85px;overflow:hidden;width:100%;}
 #template{float:left; width:100%; font-family:sans-serif;margin:0px;background:#fff;color:#333;}
 #logo{float:left; width:100%;}
@@ -14,3 +14,8 @@ li{padding-bottom:2px;font-size:18px;font-family:verdana;margin:10px;text-align:
 .button{font-family:sans-serif;text-decoration:none;font-size:14px!important;line-height:16px;padding:6px 12px;cursor:pointer;border:1px solid #bbb;color:#464646;-moz-border-radius:15px;-khtml-border-radius:15px;-webkit-border-radius:15px;border-radius:15px;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;-khtml-box-sizing:content-box;box-sizing:content-box;background:#f2f2f2 url(/images/white-grad.png) repeat-x scroll left top;}
 .button:active{background:#eee url(/images/white-grad-active.png) repeat-x scroll left top;}
 .button:hover{color:#000;border-color:#666;}
+.form-table{border-collapse: collapse; margin-top: 1em; width: 100%}
+.form-table tr {background: none repeat scroll 0% 0% rgb(243, 243, 243);}
+.form-table th {font-size: 13px; text-align: left; padding: 16px 10px 10px; border-bottom: 8px solid rgb(255, 255, 255); width: 130px; vertical-align: top;}
+.form-table td {margin-bottom: 9px; padding: 10px; border-bottom: 8px solid rgb(255, 255, 255); font-size: 12px;}
+.form-table input {line-height: 20px; font-size: 15px; padding: 2px;}

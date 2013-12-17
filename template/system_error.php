@@ -125,13 +125,13 @@
 					$emailmessage='';
 					$emailmessage.="<b>Request Details</b>=".json_encode($_REQUEST);
 					if ( isset ( $this->context) ) {
-						$emailmessage.=json_encode($this->context);
+						$emailmessage.=@json_encode($this->context);
 					}
 					$emailmessage.="<b><br><br>Error Number</b>=".$this->error_no;
 					$emailmessage.="<b><br><br>Message </b>= ".$this->message;
 					$emailmessage.="<b><br><br>Location </b>= ".$this->error_file;
 					$emailmessage.="<b><br><br>Line No. </b>= ".$this->error_line;
-					$emailmessage.="<b><br><br>Details. </b>= <br/>\n".stripslashes (indent(json_encode(debug_backtrace())));
+					$emailmessage.="<b><br><br>Details. </b>= <br/>\n".stripslashes (indent(@json_encode(debug_backtrace())));
 					$res=@mail($email, "Error Message", $emailmessage,$headers);
 				?>
 				<br/><br/><br/><br/>
@@ -146,6 +146,20 @@
 					?>
 					<div class='error'>
 						<ol>
+							<?
+								$emailmessage.="<b>Request Details</b>=".json_encode($_REQUEST);
+								if ( isset ( $this->context) ) {
+									$emailmessage.=@json_encode($this->context);
+								}
+								$emailmessage.="<b><br><br>Error Number</b>=".$this->error_no;
+								$emailmessage.="<b><br><br>Message </b>= ".$this->message;
+								$emailmessage.="<b><br><br>Location </b>= ".$this->error_file;
+								$emailmessage.="<b><br><br>Line No. </b>= ".$this->error_line;
+								$emailmessage.="<b><br><br>Details. </b>= <br/>\n".stripslashes (indent(json_encode(debug_backtrace())));
+								
+								echo $emailmessage;
+					
+							?>
 							<li>Sorry, Localhost run can't Send Error Message</li>
 						</ol>
 					</div>

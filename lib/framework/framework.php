@@ -55,7 +55,7 @@
 	/**
 	*	Don't Display System Generated Errors
 	**/
-	ini_set('display_errors', '1');
+	ini_set('display_errors', '0');
 
 
 	/**
@@ -176,12 +176,13 @@
 
 	gContacts_import('Version');
 	$version=new Version();
-	
-	
+
 	//Required for printing of page
-	$page = $_SERVER['SCRIPT_NAME'];
-	$page = explode('/', $page);
-	
+	$page = $_SERVER['REQUEST_URI'];
+	$page = explode('?', $page);
+	$page = explode('/', $page[0]);
+
+
 	if( strlen ( $page[1] ) > 0 ){
 		$page = $page[1];
 	}else{

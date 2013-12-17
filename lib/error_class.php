@@ -46,7 +46,20 @@
 	<body id="error-page">
 		<h1 id="logo"><img alt="gContacts" src="images/logo.png" /></h1>
 		<?
+			if ( count ($_POST) > 0 ) {
+				if ( ! isset($_GET['m'] ) ) {
+					echo "<form method=post action='".$_SERVER['PHP_SELF'] ."?m=1'>\n";
+				}elseif($_GET['m'] == 1){
+					echo "<form method=post action='".$_SERVER['PHP_SELF'] ."?m=2'>\n";
+				}
+				unset($_POST['submit']);
+				foreach($_POST as $k => $v){
+					echo "\t\t\t<input type='hidden' name='$k' value='$v' />\n";
+				}
+			}
+			
 			if ( ! isset($_GET['m'] ) ) {
+			
 		?>
 		<div class='error'>
 			<ol>
@@ -57,22 +70,33 @@
 			</ol>
 		</div>
 		<br/><br/>
-		<p class="step"><a href="<?php echo $_SERVER['PHP_SELF'] . "?m=1"; ?>" class="button">Prepare eMail</a></p>
-		<br/><br/>
-		<?
+			<?
+				if ( count ($_POST) > 0 ) {
+					?>
+						<p class="step"><input name="submit" type="submit" value="Prepare eMail" class="button" /></p>
+					<?
+						echo "</form>";
+				}else{
+			?>
+				<p class="step"><a href="<?php echo $_SERVER['PHP_SELF'] . "?m=1"; ?>" class="button">Prepare eMail</a></p>
+				<br/><br/>
+			<?
+				}
 			}
-		?>
+			?>
 		
-		<?
+			<?
 			if ( isset ( $_GET['m'] ) ) {
 				//If the Server Address is not equal to localhost then send error through email
 				if ( $_SERVER['SERVER_ADDR'] != '127.0.0.1' and ( $_GET['m'] == 1) ){
-					$emailmessage='<pre>';
-					$emailmessage.=json_encode($_REQUEST);
-					$emailmessage.="<br><br>Error Number=".$error_number;
-					$emailmessage.="<br><br>Message = ".$error_details[$error_number];
-					$emailmessage.="<br><br>Location = ".$file_location;
-					$emailmessage.="<br><br>ERRROR In gContacts";
+					$emailmessage.="<div style='float:left;width:100%;text-align:justify;'>";
+					$emailmessage.="<div style='float:left;width:90%;text-align:justify;margin-left:5%;margin-right:5%'>";
+					$emailmessage.="<b><br><br>Request Information</b>= <br/>\n".stripslashes (indent(@json_encode($_REQUEST)));
+					$emailmessage.="</div></div>";
+					$emailmessage.="<b><br><br>Error Number=</b>".$error_number;
+					$emailmessage.="<b><br><br>Message = </b>".$error_details[$error_number];
+					$emailmessage.="<b><br><br>Location = </b>".$file_location;
+					
 				?>
 					<div class='error'>
 						<ol>
@@ -85,12 +109,22 @@
 					echo "<div id='message'>" . $emailmessage . '</div>';
 				?>
 				<br/>
-					<p class="step"><a href="<?php echo $_SERVER['PHP_SELF'] . "?m=2"; ?>" class="button">Send eMail</a></p>
-				<br/>
 				<?
+					if ( count ($_POST) > 0 ) {
+				?>
+						<p class="step"><input name="submit" type="submit" value="Send eMail" class="button" /></p>
+				<?
+						echo "</form>";
+					}else{
+				?>
+					<p class="step"><a href="<?php echo $_SERVER['PHP_SELF'] . "?m=2"; ?>" class="button">Send eMail</a></p>
+					<br/><br/>
+				<?
+					}
 				}else{
 					if ($_GET['m'] == 1){
 					?>
+					<br/>
 					<div class='error'>
 						<ol>
 							<li>Sorry, Localhost run can't view Error Message</li>
@@ -107,8 +141,7 @@
 					$headers.="Content-type: text/html\r\n";
 					$email='"Cee Emm Infotech" '."<vineetgupta22@gmail.com>";
 					$emailmessage='';
-					$emailmessage='<pre>';
-					$emailmessage.=json_encode($_REQUEST);
+					$emailmessage.=indent(@json_encode($_REQUEST));
 					$emailmessage.="<br><br>Error Number=".$error_number;
 					$emailmessage.="<br><br>Message = ".$error_details[$error_number];
 					$emailmessage.="<br><br>Location = ".$file_location;
