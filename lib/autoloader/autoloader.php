@@ -141,7 +141,9 @@
 			}else{
 				$folder_name=gContacts_lib;
 				foreach($folders as $folder){
-					$folder_name.=$folder . ds;
+					if ($folder != "gContacts"){
+						$folder_name.=$folder . ds;
+					}
 				}
 				return strtolower($folder_name);
 			}

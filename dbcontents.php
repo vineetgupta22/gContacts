@@ -38,6 +38,8 @@
 			if ( $_SERVER['SERVER_ADDR'] != '127.0.0.1' ) {
 				$message[]= "Kindly Provide the Correct Password to Connect DB";
 				$valid=false;
+			}else{
+				$_POST['pwd']=null;
 			}
 		}
 		
@@ -48,7 +50,18 @@
 		
 		
 		if ( $valid ){
-			$db = new DBConnect($_POST['dbhost'], $_POST['uname'], $_POST['pwd'], $_POST['dbname'], $_POST['prefix']);
+			$db = new gContacts_DBConnect(
+									$_POST['dbhost'], 
+									$_POST['uname'], 
+									$_POST['pwd'], 
+									$_POST['dbname'], 
+									$_POST['prefix'], true
+			);
+			foreach($_POST as $k => $v){
+				$_SESSION[$k]=$v;
+			}
+			header('Location:/columns.php');
+			exit();
 		}else{
 			foreach($message as $m){
 				echo "<div style='color:red;width:100%;text-align:center;font-weight:bold;margin-top:25px;'>";
@@ -127,6 +140,45 @@
 							</td>
 							<td>
 								If you want to run multiple WordPress installations in a single database, change this.
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" style='padding:0px; border-bottom:0px;'>
+								<table width="100%" style='border-spacing:0px;margin:0;padding:0'>
+									<tr>
+										<td width="35%">
+											<div style='text-align:justify'>
+												<input type="checkbox" name="dbcache" checked="checked" /> 
+												<span style='text-align:left;font-size:18px;margin-left:25px;'>
+													Use Disk Cache
+												</span>
+											</div>
+										</td>
+										<td width="30%">
+											<div style='text-align:justify'>
+												<input type="checkbox" name="cache_queries" checked="checked" /> 
+												<span style='text-align:left;font-size:18px;margin-left:25px;'>
+													Cache Query
+												</span>
+											</div>
+										</td>
+										<td width="35%">
+											<div style='text-align:justify'>
+												<select name='cache_timeout'>
+													<?
+														for($i=1; $i<=23; $i++){
+															echo "<option value=".$i.">".$i."</option>";
+														}
+														echo "<option value=24 selected='selected'>24</option>";
+													?>
+												</select>
+												<span style='text-align:left;font-size:18px;margin-left:25px;'>
+													Hours - Cache TimeOut
+												</span>
+											</div>
+										</td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 					</table>

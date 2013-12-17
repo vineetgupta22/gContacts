@@ -41,8 +41,6 @@
 	
 	
 	if ( isset($_POST['username']) ) {
-		echo "FTP Information Provided<br>";
-		
 		/**
 		*	The Major Problem while using FTP PHP is to reach the location
 		*	of the location of root directory of the Project.
@@ -129,12 +127,6 @@
 		$subdirectories_for_domain_root=rtrim($subdirectories_for_domain_root, '/');
 		$subdirectories_for_project_root_from_domain_root=rtrim($subdirectories_for_project_root_from_domain_root, '/');
 		
-		
-		echo "This is Root Directory location = " . $root_directory . '<br>';
-		echo "This is Domain Root Directory location = " . $_SERVER['DOCUMENT_ROOT'] . '<br>';
-		echo "This is Project Root Directory location = " . gContacts . '<br>';
-		
-		
 		//Connect to FTP Server
 		$ftp_server = $_SERVER['HTTP_HOST'];
 		
@@ -156,11 +148,8 @@
 		if ((!$conn_id) || (!$login_result)) {
 			echo "FTP connection has failed!";
 			echo "Attempted to connect to $ftp_server for user $ftp_user_name";
-			exit;
-		}else{
-			echo "Connected to $ftp_server, for user $ftp_user_name<br/><br/>";
+			die();
 		}
-		
 		
 		//If we are standing at Root Directory then 
 		$minimum_possiblity = $root_directory;
@@ -176,7 +165,7 @@
 		//List of current files and directories in ftp current location
 		$directory_files = ftp_nlist($conn_id, ".");
 		
-		go($split_directories);
+		
 		
 		$we_are_here = "";
 		
@@ -202,14 +191,11 @@
 			}
 		}
 		
-		echo "We are here = " . $we_are_here . '<br>';
-		echo "Not the current directory_location = " . $not_found_correct_location . '<br>';
-		
 		//These can be many subdirectories each splitted by ds
 		$check_directories2 = $subdirectories_for_project_root_from_domain_root;
 		$split_directories = explode(ds, $check_directories2);
 		
-		go($split_directories);
+		
 		
 		$found=false;
 		foreach($split_directories as $dir){
@@ -234,18 +220,11 @@
 		}
 		
 		
-		echo "We are here = " . $we_are_here . '<br>';
-		echo "Not the current directory_location = " . $not_found_correct_location . '<br>';
-		
-		
 		//current parent location of ftp login root_directory + not found correct location
 		$ftp_root = $root_directory.ds;
 		if ( $not_found_correct_location ){
 			$ftp_root.=$not_found_correct_location;
 		}
-		
-		echo "Ftp Login to Location at " . $ftp_root . '<br>';
-		echo "Ftp Current Location at " . gContacts;
 		
 		
 		//Create directory with write permission and redirect to root again after checking
@@ -255,7 +234,10 @@
 				ftp_close($conn_id);
 				
 				if ( check_folder() ) {
+					$_SESSION['ftp_user_name'] = $_POST['username'];
+					$_SESSION['ftp_user_pass'] = $_POST['password'];
 					header("Location:/dbconfig.php");
+					exit();
 				}else{
 					echo 'ERROR is here';
 				}

@@ -125,12 +125,14 @@
 
 			//Now we have to check whether the error is system described or not
 			if(self::check_system_error()){
-				if ( file_exists(gContacts_template . 'system_error.php') ){
-					//Print the Error
-					require_once gContacts_template . 'system_error.php';
-					die();
-				}else{
-					die('Some Files are missing. Kindly Download the Project Again.');
+				if ( ! self::suppress_error($file, $line) ) {
+					if ( file_exists(gContacts_template . 'system_error.php') ){
+						//Print the Error
+						require_once gContacts_template . 'system_error.php';
+						die();
+					}else{
+						die('Some Files are missing. Kindly Download the Project Again.');
+					}
 				}
 			}
 		}
@@ -155,6 +157,25 @@
 				}
 			}
 			return $found;
+		}
+
+		/**
+		 *	checking the inbuilt PHP error or not
+		 *
+		 *	@var	integer		Error Number
+		 *	return 	boolean		If don't suppress then return false
+		 *			else true
+		**/
+		public function suppress_error($file, $line){
+			global $Error_Supress;
+
+			//Default returning boolean
+			$return=false;
+
+			if ( $Error_Supress->check($file, $line) ) {
+				return true;
+			}
+			return $return;
 		}
 	}
 ?>

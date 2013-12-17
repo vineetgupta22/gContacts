@@ -189,4 +189,19 @@
 		$page = 'home';
 	}
 
+	//Suppression of Some Errors
+	$Error_Supress = new Error_Supress();
+
+	//Global connection to DB
+	if ( isset ($_SESSION['dbname'] ) ) {
+		$db = new gContacts_DBConnect(
+									$_SESSION['dbhost'],
+									$_SESSION['uname'],
+									$_SESSION['pwd'],
+									$_SESSION['dbname'],
+									$_SESSION['prefix'],
+									true
+			);
+	}
+
 ?>

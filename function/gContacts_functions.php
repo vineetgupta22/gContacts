@@ -78,6 +78,7 @@
 				1 => "File doesn't Available at the location Provided",
 				2 => "File Exists at the location but Class is not available in File",
 				5 => "Change Permission to Write of Input Folder",
+				10 => "Connection to Database Failed",
 				0 => "Kindly Add the Error Number",
 			);
 			
@@ -87,6 +88,7 @@
 				1 => "File Not Found",
 				2 => "Class Not Found",
 				5 => "Change Permission",
+				10 => "Connection Failed",
 			);
 			
 			if ( isset ( $error_details[$error_number]) ) {

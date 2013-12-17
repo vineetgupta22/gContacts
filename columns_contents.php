@@ -1,13 +1,13 @@
 <?
 
 	/**
-	*	Template - Contents
+	*	Database Information
 	*
-	*	This file would be used to display template contents for specific
-	*	directory file accessed.
+	*	This file would be used to display template to get the information
+	*	about database from the user
 	*
 	*	@package				gContacts
-	*	@file					contents.php
+	*	@file					dbcontents.php
 	*	@copyright				Cee Emm Infotech, 2013-2014
 	*	@author					Vineet Gupta <vineetgupta22@gmail.com>
 	*	@since					1.0.0
@@ -19,18 +19,9 @@
 	*	not through MVC and restrictions from doing such thing.
 	**/
 	defined('gContacts') or die('Direct Access to the File is Prohibited');
-	
-	if ($page == "home"){
-		require_once "home_contents.php";
-	}
-	
-	if ($page == "dbconfig.php"){
-		require_once "dbcontents.php";
-	}
-	
-	if ($page == "columns.php"){
-		require_once "columns_contents.php";
-	}
-	
-
 ?>
+<html5:section id='starting'>
+<?	
+	go($db);
+?>
+</html5:section>
